@@ -1,0 +1,12 @@
+# Compiled Java output
+out/
+*.class
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# IDE files (safe to ignore)
+.vscode/
+.idea/
+*.iml

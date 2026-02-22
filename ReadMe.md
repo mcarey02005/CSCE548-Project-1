@@ -1,5 +1,11 @@
-To build on windows:
-javac -d out -cp "lib\mysql-connector-j-9.6.0.jar" src\*.java
+Project layout:
+- Java sources: `src/main/java`
 
-To run on windows:
-java -cp "out;lib\mysql-connector-j-9.6.0.jar" App
+Dependencies:
+- Managed by Maven in `pom.xml` (no local jars in `lib/`)
+
+Build with Maven (Windows):
+`mvn clean package`
+
+Run with Maven (Windows):
+`mvn exec:java`

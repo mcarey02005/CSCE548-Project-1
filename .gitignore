@@ -2,6 +2,12 @@
 out/
 *.class
 
+# Maven output
+target/
+
+# Legacy local dependency folder (dependencies are Maven-managed)
+lib/
+
 # OS junk
 .DS_Store
 Thumbs.db

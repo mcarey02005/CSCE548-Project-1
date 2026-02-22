@@ -1,3 +1,5 @@
+package edu.csce548.project1.core.model;
+
 public class User {
 
     public Integer userId;

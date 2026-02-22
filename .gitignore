@@ -4,6 +4,7 @@ out/
 
 # Maven output
 target/
+**/target/
 
 # Legacy local dependency folder (dependencies are Maven-managed)
 lib/

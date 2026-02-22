@@ -1,23 +1,33 @@
-import java.sql.*;
+package edu.csce548.project1.core.dao;
+
+import edu.csce548.project1.core.db.DBUtil;
+import edu.csce548.project1.core.model.User;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 /*
- * UserDAO: simple CRUD - create, findById, findAll, update, delete.
+ * UserDAO provides CRUD methods for users table.
  */
 public class UserDAO {
-    public User create(User u) throws Exception {
+
+    public User create(User user) throws Exception {
         String sql = "INSERT INTO users (name) VALUES (?)";
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            ps.setString(1, u.name);
+        try (Connection c = DBUtil.getConnection();
+                PreparedStatement ps = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            ps.setString(1, user.name);
             ps.executeUpdate();
             try (ResultSet rs = ps.getGeneratedKeys()) {
                 if (rs.next()) {
-                    u.userId = rs.getInt(1);
+                    user.userId = rs.getInt(1);
                 }
             }
         }
-        return u;
+        return user;
     }
 
     public User findById(int id) throws Exception {
@@ -36,7 +46,9 @@ public class UserDAO {
     public List<User> findAll() throws Exception {
         List<User> out = new ArrayList<>();
         String sql = "SELECT user_id, name FROM users ORDER BY user_id";
-        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql); ResultSet rs = ps.executeQuery()) {
+        try (Connection c = DBUtil.getConnection();
+                PreparedStatement ps = c.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 out.add(new User(rs.getInt("user_id"), rs.getString("name")));
             }
@@ -44,11 +56,11 @@ public class UserDAO {
         return out;
     }
 
-    public boolean update(User u) throws Exception {
+    public boolean update(User user) throws Exception {
         String sql = "UPDATE users SET name = ? WHERE user_id = ?";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
-            ps.setString(1, u.name);
-            ps.setInt(2, u.userId);
+            ps.setString(1, user.name);
+            ps.setInt(2, user.userId);
             return ps.executeUpdate() > 0;
         }
     }

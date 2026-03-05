@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSCE 548 Project 3 Client</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="layout">
+        <header class="hero">
+            <p class="kicker">CSCE 548</p>
+            <h1>Task Manager Service Frontend</h1>
+            <p class="subtitle">Project 3 web client that exercises all available GET service methods.</p>
+            <div class="api-config">
+                <label for="apiBase">API Base URL</label>
+                <input id="apiBase" type="text" placeholder="http://localhost:8080/api">
+                <button id="saveBase">Apply</button>
+            </div>
+            <div class="actions-row">
+                <button id="runAll" class="primary">Run Full GET Demo</button>
+                <span id="statusBadge" class="status idle">Waiting</span>
+            </div>
+        </header>
+
+        <section class="grid">
+            <article id="usersPanel" class="panel">
+                <h2>Users</h2>
+                <div class="controls">
+                    <button data-action="users-all">Get All Users</button>
+                    <div class="inline">
+                        <input id="userIdInput" type="number" min="1" placeholder="User ID">
+                        <button data-action="users-one">Get User By ID</button>
+                    </div>
+                </div>
+                <pre id="usersOutput" class="output"></pre>
+            </article>
+
+            <article id="categoriesPanel" class="panel">
+                <h2>Categories</h2>
+                <div class="controls">
+                    <button data-action="categories-all">Get All Categories</button>
+                    <div class="inline">
+                        <input id="categoryIdInput" type="number" min="1" placeholder="Category ID">
+                        <button data-action="categories-one">Get Category By ID</button>
+                    </div>
+                </div>
+                <pre id="categoriesOutput" class="output"></pre>
+            </article>
+
+            <article id="tasksPanel" class="panel wide">
+                <h2>Tasks</h2>
+                <div class="controls">
+                    <button data-action="tasks-all">Get All Tasks</button>
+                    <button data-action="tasks-names">Get Tasks With User/Category Names</button>
+                    <div class="inline">
+                        <input id="taskIdInput" type="number" min="1" placeholder="Task ID">
+                        <button data-action="tasks-one">Get Task By ID</button>
+                    </div>
+                </div>
+                <pre id="tasksOutput" class="output"></pre>
+            </article>
+        </section>
+
+        <section id="logPanel" class="panel log-panel">
+            <h2>Activity Log</h2>
+            <p class="hint">Each line shows the endpoint call and HTTP status.</p>
+            <pre id="logOutput" class="output log"></pre>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
